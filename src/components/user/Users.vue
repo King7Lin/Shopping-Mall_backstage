@@ -360,7 +360,7 @@ export default {
     },
     // 添加用户
     addUser() {
-      this.$refs.addFromRef.validate(async (valid) => {
+      this.$refs.addFromRrefef.validate(async (valid) => {
         if (!valid) return;
         const { data: res } = await this.$http.post("users", this.addFrom);
         console.log(res, this.addFrom);
@@ -378,7 +378,7 @@ export default {
       // console.log(e);
       this.editDialogVisible = true;
       const { data: res } = await this.$http.get("users/" + e);
-      if (res.meta.status !== 200) return this.$message.error("修改失败");
+      if (res.meta.status !== 200) return this.$message.error("获取数据失败");
       this.editFrom = res.data;
       console.log(res);
     },

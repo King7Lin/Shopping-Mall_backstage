@@ -9,7 +9,9 @@
     <el-card shadow="always" :body-style="{ padding: '20px' }">
       <el-row>
         <el-col>
-          <el-button type="primary">添加角色</el-button>
+          <el-button type="primary" @click="addDialogVisible = true"
+            >添加角色</el-button
+          >
         </el-col>
       </el-row>
 
@@ -106,9 +108,7 @@
       ></el-tree>
       <span slot="footer" class="dialog-footer">
         <el-button @click="setRightDialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="allotRights"
-          >确 定</el-button
-        >
+        <el-button type="primary" @click="allotRights">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -129,7 +129,7 @@ export default {
       },
       // 默认选中节点
       defkeys: [],
-      RoleId:''
+      RoleId: "",
     };
   },
   created() {
@@ -174,7 +174,7 @@ export default {
 
       this.getLeafKeys(role, this.defkeys);
       this.setRightDialogVisible = true;
-      this.RoleId = role.id
+      this.RoleId = role.id;
     },
     // 通过递归的形式，获取角色下所有三级权限的id，并保存到 defKeys 数组中
     getLeafKeys(node, arr) {
@@ -184,26 +184,29 @@ export default {
       }
       node.children.forEach((item) => this.getLeafKeys(item, arr));
     },
-    setRightDialogClosed(){
-      this.defkeys = []
+    setRightDialogClosed() {
+      this.defkeys = [];
     },
-    // 确认分配权限
-    async allotRights(){
+        // 确认分配权限
+    async allotRights() {
       const keys = [
         ...this.$refs.treeRef.getCheckedKeys(),
-        ...this.$refs.treeRef.getHalfCheckedKeys()
-      ]
-     const idStr = keys.join(',')
+        ...this.$refs.treeRef.getHalfCheckedKeys(),
+      ];
+      const idStr = keys.join(",");
 
-     const {data:res} = await this.$http.post(`roles/${this.RoleId}/rights`,{rids:idStr})
+      const { data: res } = await this.$http.post(
+        `roles/${this.RoleId}/rights`,
+        { rids: idStr }
+      );
 
-      if(res.meta.status!==200) return this.$message.error('更新失败')
+      if (res.meta.status !== 200) return this.$message.error("更新失败");
 
-      this.$message.success('更新成功')
-      this.getRoleList()
-      this.setRightDialogVisible = false
+      this.$message.success("更新成功");
+      this.getRoleList();
+      this.setRightDialogVisible = false;
       console.log(res);
-    }
+    },
   },
 };
 </script>
