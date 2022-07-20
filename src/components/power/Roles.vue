@@ -111,8 +111,6 @@
       <span slot="footer" class="dialog-footer">
         <el-button @click="setRightDialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="allotRights">确 定</el-button>
-<<<<<<< HEAD
-=======
       </span>
     </el-dialog>
     <!-- 新增角色 -->
@@ -163,7 +161,6 @@
       <span slot="footer" class="dialog-footer">
         <el-button @click="editDialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="editRoleInfo">确 定</el-button>
->>>>>>> rights
       </span>
     </el-dialog>
   </div>
@@ -185,8 +182,6 @@ export default {
       // 默认选中节点
       defkeys: [],
       RoleId: "",
-<<<<<<< HEAD
-=======
       addDialogVisible: false,
       // 添加角色表格
       addFrom: {
@@ -208,7 +203,6 @@ export default {
         roleName: "",
         roleDesc: "",
       },
->>>>>>> rights
     };
   },
   created() {
@@ -266,11 +260,7 @@ export default {
     setRightDialogClosed() {
       this.defkeys = [];
     },
-<<<<<<< HEAD
-        // 确认分配权限
-=======
     // 确认分配权限
->>>>>>> rights
     async allotRights() {
       const keys = [
         ...this.$refs.treeRef.getCheckedKeys(),
@@ -288,8 +278,6 @@ export default {
       this.$message.success("更新成功");
       this.getRoleList();
       this.setRightDialogVisible = false;
-<<<<<<< HEAD
-=======
       console.log(res);
     },
     // 重置新增对话框
@@ -366,9 +354,8 @@ export default {
       }
       this.$message.success("删除成功");
       this.getRoleList();
->>>>>>> rights
       console.log(res);
-    },
+    }
   },
 };
 </script>
