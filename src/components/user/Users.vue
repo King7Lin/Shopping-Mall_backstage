@@ -330,7 +330,7 @@ export default {
       this.userLit = res.data.users;
       this.total = res.data.total;
 
-      console.log(res);
+      // console.log(res);
     },
     // 监听pagesize改变
     handleSizeChange(newSize) {
@@ -344,7 +344,7 @@ export default {
     },
     // 监听Switch改变
     async userStateChange(userInfo) {
-      console.log(userInfo);
+      // console.log(userInfo);
       const { data: res } = await this.$http.put(
         `users/${userInfo.id}/state/${userInfo.mg_state}`
       );
@@ -360,10 +360,10 @@ export default {
     },
     // 添加用户
     addUser() {
-      this.$refs.addFromRrefef.validate(async (valid) => {
+      this.$refs.addFromRef.validate(async (valid) => {
         if (!valid) return;
         const { data: res } = await this.$http.post("users", this.addFrom);
-        console.log(res, this.addFrom);
+        // console.log(res, this.addFrom);
         if (res.meta.status !== 201) {
           return this.$message.error("添加用户失败");
         }
@@ -380,7 +380,7 @@ export default {
       const { data: res } = await this.$http.get("users/" + e);
       if (res.meta.status !== 200) return this.$message.error("获取数据失败");
       this.editFrom = res.data;
-      console.log(res);
+      // console.log(res);
     },
     editDialogClose() {
       this.$refs.editFromRef.resetFields();
@@ -396,7 +396,7 @@ export default {
             mobile: this.editFrom.mobile,
           }
         );
-        console.log(res);
+        // console.log(res);
         if (res.meta.status !== 200) {
           return this.$message.error("修改失败");
         }
@@ -407,7 +407,7 @@ export default {
     },
     // 删除
     async removeUser(e) {
-      console.log(e);
+      // console.log(e);
       const result = await this.$confirm(
         "此操作将永久删除该用户, 是否继续?",
         "提示",
@@ -417,7 +417,7 @@ export default {
           type: "warning",
         }
       ).catch((err) => err);
-      console.log(result);
+      // console.log(result);
       if (result !== "confirm") {
         return this.$message.info("已取消删除");
       }
@@ -427,7 +427,7 @@ export default {
       }
       this.$message.success("删除成功");
       this.getUserList();
-      console.log(res);
+      // console.log(res);
     },
     // 分配角色对话框
     async setRole(e) {
@@ -438,7 +438,7 @@ export default {
 
       if (res.meta.status !== 200) return this.$message.error("获取列表失败");
       this.roleList = res.data;
-      console.log(this.roleList);
+      // console.log(this.roleList);
 
       this.setRoleDialogVisible = true;
     },

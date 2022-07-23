@@ -64,7 +64,7 @@ export default {
     if (res.meta.status !== 200) return this.$message.error("获取数据失败");
 
     const option = _.merge(res.data, this.options);
-    console.logoption;
+    // console.logoption;
     myChart.setOption(option);
   },
   methods: {},

@@ -185,14 +185,14 @@ export default {
       if (res.meta.status !== 200) return this.$message.error("获取数据失败");
       this.catesList = res.data;
       // console.log(res);
-      console.log(this.catesList);
+      // console.log(this.catesList);
     },
     // 级联选择器选中
     handleChange() {
       if (this.addFrom.goods_cat.length !== 3) {
         this.addFrom.goods_cat = [];
       }
-      console.log(this.addFrom.goods_cat);
+      // console.log(this.addFrom.goods_cat);
     },
     befireTabLeave(activeName, oldActiveName) {
       // console.log(activeName, oldActiveName);
@@ -216,7 +216,7 @@ export default {
             item.attr_vals.length === 0 ? [] : item.attr_vals.split(",");
         });
         this.manyTableData = res.data;
-        console.log(this.manyTableData);
+        // console.log(this.manyTableData);
       } else if (this.activeindex === "2") {
         const { data: res } = await this.$http.get(
           `categories/${this.cateId}/attributes`,
@@ -225,31 +225,31 @@ export default {
 
         if (res.meta.status !== 200) return this.$message.error("获取数据失败");
         this.onlyTableData = res.data;
-        console.log(this.onlyTableData);
+        // console.log(this.onlyTableData);
       }
     },
     // 处理图片预览
     handlePreview(file) {
-      console.log(file);
+      // console.log(file);
       this.previewPath = file.response.data.url;
       this.previewVisible = true;
     },
     // 处理移除图片操作
     handleRemove(file) {
-      console.log(file);
+      // console.log(file);
       const filePath = file.response.data.tmp_path;
       const i = this.addFrom.pics.findIndex((x) => {
         x.pic === filePath;
       });
       this.addFrom.pics.splice(i, 1);
-      console.log(this.addFrom);
+      // console.log(this.addFrom);
     },
     // 图片上传成功
     handleSuccess(response) {
       // console.log(response);
       const picInfo = { pic: response.data.tmp_path };
       this.addFrom.pics.push(picInfo);
-      console.log(this.addFrom);
+      // console.log(this.addFrom);
     },
     // 提交添加
     async add() {
@@ -276,16 +276,16 @@ export default {
       // 深拷贝
       const form = _.cloneDeep(this.addFrom);
       form.goods_cat = form.goods_cat.join(",");
-      console.log(this.manyTableData);
-      console.log(form);
+      // console.log(this.manyTableData);
+      // console.log(form);
       const { data: res } = await this.$http.post(`goods`, form);
-      console.log(res);
+      // console.log(res);
       if (res.meta.status !== 201) {
         return this.$message.error("添加参数失败");
       }
       this.$message.success("商品添加成功");
       this.$router.push('/goods')
-      console.log(res);
+      // console.log(res);
     },
   },
   computed: {

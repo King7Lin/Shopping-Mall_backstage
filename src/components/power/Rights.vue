@@ -39,7 +39,7 @@ export default {
     async getRighesList() {
       const { data: res } = await this.$http.get("rights/list");
       if (res.meta.status !== 200) return this.$message.error("获取列表失败");
-      console.log(res);
+      // console.log(res);
       this.rightsList = res.data;
     },
   },

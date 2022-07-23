@@ -45,7 +45,7 @@
           </template>
         </el-table-column>
         <el-table-column label="操作" width="130px">
-          <template slot-scope="scope">
+          <template>
             <el-button
               type="primary"
               icon="el-icon-edit"
@@ -166,7 +166,7 @@ export default {
       }
       this.orderList = res.data;
       this.total = res.data.total;
-      console.log(this.orderList);
+    //   console.log(this.orderList);
     },
     // 分页选择一页显示多少
     handleSizeChange(newSize) {

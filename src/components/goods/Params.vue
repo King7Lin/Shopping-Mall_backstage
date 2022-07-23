@@ -275,7 +275,7 @@ export default {
         return this.$message.error("获取数据失败");
       }
       this.cateList = res.data;
-      console.log(this.cateList);
+      // console.log(this.cateList);
     },
     // 级联选择框选中
     handleChange() {
@@ -314,7 +314,7 @@ export default {
       } else {
         this.onlyTableData = res.data;
       }
-      console.log(res);
+      // console.log(res);
     },
     addDialogClosed() {
       this.$refs.addFromRef.resetFields();
@@ -330,7 +330,7 @@ export default {
             attr_sel: this.activeName,
           }
         );
-        console.log(res);
+        // console.log(res);
         if (res.meta.status !== 201) {
           return this.$message.error("添加参数失败");
         }
@@ -349,7 +349,7 @@ export default {
           },
         }
       );
-      console.log(res);
+      // console.log(res);
       if (res.meta.status !== 200) {
         return this.$message.error("修改参数失败");
       }
@@ -370,7 +370,7 @@ export default {
             attr_sel: this.activeName,
           }
         );
-        console.log(res);
+        // console.log(res);
         if (res.meta.status !== 200) {
           return this.$message.error("修改参数失败");
         }
@@ -394,7 +394,7 @@ export default {
       const { data: res } = await this.$http.delete(
         `categories/${this.cateId}/attributes/${id}`
       );
-      console.log(res);
+      // console.log(res);
       if (res.meta.status !== 200) {
         return this.$message.error("修改删除失败");
       }
@@ -429,7 +429,7 @@ export default {
           attr_vals: e.attr_vals.join(","),
         }
       );
-      console.log(res);
+      // console.log(res);
       if (res.meta.status !== 200) {
         return this.$message.error("修改参数失败");
       }

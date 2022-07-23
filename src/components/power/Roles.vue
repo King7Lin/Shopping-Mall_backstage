@@ -15,7 +15,7 @@
         </el-col>
       </el-row>
 
-      <el-table :data="roleList" border stripe>
+      <el-table :data="roleList" border stripec row-key="id">
         <!-- 展开列 -->
         <el-table-column type="expand">
           <template slot-scope="scope">
@@ -55,7 +55,7 @@
                       closable
                       @close="removeRightById(scope.row, item3.id)"
                       type="warning"
-                      v-for="(item3, i3) in item2.children"
+                      v-for="item3 in item2.children"
                       :key="item3.id"
                     >
                       {{ item3.authName }}
@@ -71,12 +71,18 @@
         <el-table-column label="角色描述" prop="roleDesc"></el-table-column>
         <el-table-column label="操作" width="300px">
           <template slot-scope="scope">
-            <el-button size="mini" icon="el-icon-edit" type="primary"
-            @click="showEditDialog(scope.row.id)"
+            <el-button
+              size="mini"
+              icon="el-icon-edit"
+              type="primary"
+              @click="showEditDialog(scope.row.id)"
               >编辑</el-button
             >
-            <el-button size="mini" icon="el-icon-delete" type="danger"
-            @click="removeUser(scope.row.id)"
+            <el-button
+              size="mini"
+              icon="el-icon-delete"
+              type="danger"
+              @click="removeUser(scope.row.id)"
               >删除</el-button
             >
             <el-button
@@ -198,7 +204,7 @@ export default {
         ],
       },
       // 编辑对话框
-      editDialogVisible:false,
+      editDialogVisible: false,
       editFrom: {
         roleName: "",
         roleDesc: "",
@@ -235,7 +241,7 @@ export default {
       if (res.meta.status !== 200) return this.$message.info("删除权限失败");
 
       e.children = res.data;
-      console.log(res);
+      // console.log(res);
     },
     async showSetRightDialog(role) {
       const { data: res } = await this.$http.get("rights/tree");
@@ -243,7 +249,7 @@ export default {
       if (res.meta.status !== 200) return this.$message.info("获取权限失败");
 
       this.rightList = res.data;
-      console.log(this.rightList);
+      // console.log(this.rightList);
 
       this.getLeafKeys(role, this.defkeys);
       this.setRightDialogVisible = true;
@@ -278,18 +284,18 @@ export default {
       this.$message.success("更新成功");
       this.getRoleList();
       this.setRightDialogVisible = false;
-      console.log(res);
+      // console.log(res);
     },
     // 重置新增对话框
-    addDialogClosed(){
-      this.$refs.addFromRef.resetFields()
+    addDialogClosed() {
+      this.$refs.addFromRef.resetFields();
     },
     // 新增
-    addRole(){
+    addRole() {
       this.$refs.addFromRef.validate(async (valid) => {
         if (!valid) return;
         const { data: res } = await this.$http.post("roles", this.addFrom);
-        console.log(res, this.addFrom);
+        // console.log(res, this.addFrom);
         if (res.meta.status !== 201) {
           return this.$message.error("添加用户失败");
         }
@@ -300,16 +306,16 @@ export default {
       });
     },
     // 编辑对话框
-    async showEditDialog(id){
-      console.log(id);
+    async showEditDialog(id) {
+      // console.log(id);
       const { data: res } = await this.$http.get("roles/" + id);
       if (res.meta.status !== 200) return this.$message.error("获取数据失败");
       this.editFrom = res.data;
-      console.log(res);
-      this.editDialogVisible = true
+      // console.log(res);
+      this.editDialogVisible = true;
     },
     // 确定提交修改
-    editRoleInfo(){
+    editRoleInfo() {
       this.$refs.editFromRef.validate(async (valid) => {
         if (!valid) return this.$message.error("修改失败");
 
@@ -320,7 +326,7 @@ export default {
             roleDesc: this.editFrom.roleDesc,
           }
         );
-        console.log(res);
+        // console.log(res);
         if (res.meta.status !== 200) {
           return this.$message.error("修改失败");
         }
@@ -328,14 +334,14 @@ export default {
         this.editDialogVisible = false;
         this.getRoleList();
       });
-      console.log(this.editFrom);
+      // console.log(this.editFrom);
     },
     // 编辑对话框关闭
-    editDialogClosed(){
+    editDialogClosed() {
       this.$refs.editFromRef.resetFields();
     },
-    async removeUser(id){
-       const result = await this.$confirm(
+    async removeUser(id) {
+      const result = await this.$confirm(
         "此操作将永久删除该用户, 是否继续?",
         "提示",
         {
@@ -344,7 +350,7 @@ export default {
           type: "warning",
         }
       ).catch((err) => err);
-      console.log(result);
+      // console.log(result);
       if (result !== "confirm") {
         return this.$message.info("已取消删除");
       }
@@ -354,8 +360,8 @@ export default {
       }
       this.$message.success("删除成功");
       this.getRoleList();
-      console.log(res);
-    }
+      // console.log(res);
+    },
   },
 };
 </script>

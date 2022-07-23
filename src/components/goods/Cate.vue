@@ -223,7 +223,7 @@ export default {
       if (res.meta.status !== 200) return this.$message.error("获取数据失败");
       this.catelist = res.data.result;
       this.total = res.data.total;
-      console.log(res.data);
+      // console.log(res.data);
     },
     handleSizeChange(newSize) {
       this.queryInfo.pagesize = newSize;
@@ -246,7 +246,7 @@ export default {
       if (res.meta.status !== 200) return this.$message.error("获取数据失败");
 
       this.parentCateList = res.data;
-      console.log(res.data);
+      // console.log(res.data);
     },
     // 选择项发生变化
     parentCateChange() {
@@ -260,17 +260,17 @@ export default {
         this.addCateFrom.cat_level = 0;
       }
 
-      console.log(this.selectedKeys);
+      // console.log(this.selectedKeys);
     },
     addCate() {
-      console.log(this.addCateFrom);
+      // console.log(this.addCateFrom);
       this.$refs.addCateFromRef.validate(async (valid) => {
         if (!valid) return;
         const { data: res } = await this.$http.post(
           "categories",
           this.addCateFrom
         );
-        console.log(res);
+        // console.log(res);
         if (res.meta.status !== 201) return this.$message.error("添加失败");
 
         this.$message.success("添加成功");
@@ -302,16 +302,16 @@ export default {
       if (res.meta.status !== 200) return this.$message.info("删除分类失败");
       this.$message.success("删除分类成功");
       this.getCateList();
-      console.log(id);
+      // console.log(id);
     },
     // 打开编辑对话框
     editCate(id) {
-      console.log(id);
+      // console.log(id);
       this.saveCateId = id
       this.setCateDialogVisible = true;
     },
     saveCateInfo() {
-      console.log(this.setCate);
+      // console.log(this.setCate);
       this.$refs.setCateFrom.validate(async (valid) => {
         if (!valid) return this.$message.error("修改失败");
 
@@ -321,7 +321,7 @@ export default {
             cat_name: this.setCate.cat_name
           }
         );
-        console.log(res);
+        // console.log(res);
         if (res.meta.status !== 200) {
           return this.$message.error("修改失败");
         }

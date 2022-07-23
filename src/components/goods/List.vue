@@ -167,7 +167,7 @@ export default {
       if (res.meta.status !== 200) return this.$message.error("获取数据失败");
       this.goodsList = res.data.goods;
       this.total = res.data.total;
-      console.log(res.data);
+      // console.log(res.data);
     },
     handleSizeChange(newSize) {
       this.queryInfo.pagesize = newSize;
@@ -190,7 +190,7 @@ export default {
       ).catch((err) => err);
       if (result !== "confirm") return this.$message.info("已取消删除");
       const { data: res } = await this.$http.delete(`goods/${id}`);
-      console.log(res);
+      // console.log(res);
       if (res.meta.status !== 200) {
         return this.$message.error("修改删除失败");
       }
@@ -203,7 +203,7 @@ export default {
     },
     // 修改
     async showEditDialog(id) {
-      console.log(id);
+      // console.log(id);
       this.editDialogVisible = true;
       const { data: res } = await this.$http.get(`goods/${id}`);
       // console.log(res);
